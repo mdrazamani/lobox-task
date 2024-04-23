@@ -1,0 +1,110 @@
+$font-path: "../fonts/";
+
+@font-face {
+    font-family: "MyFont";
+    src: url("#{$font-path}Neovix-Basic.otf") format("opentype");
+}
+
+body {
+    font-family: "MyFont", sans-serif;
+}
+
+.dropdown-wrapper {
+    position: relative;
+    width: 300px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+
+    .dropdown-header {
+        padding: 10px 30px 10px 10px;
+        border: 2px solid #ccc;
+        cursor: pointer;
+        user-select: none;
+        background-color: #fff;
+        border-radius: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover,
+        &.active {
+            border-color: #7685c8;
+            box-shadow: 0 0 3px 2px #7685c8;
+        }
+
+        &::after {
+            content: "";
+            border: solid #888;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(45deg);
+            position: absolute;
+            right: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        &.active::after {
+            transform: rotate(-135deg);
+        }
+    }
+
+    .dropdown-list {
+        position: absolute;
+        top: 110%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 2px solid #ccc;
+        z-index: 1000;
+        max-height: 270px;
+        overflow-y: none;
+        border-radius: 12px;
+        margin-top: 2px;
+        padding: 10px 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-list li {
+        padding: 8px 20px;
+        margin-right: 8px;
+        margin-left: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.3s ease;
+        border-radius: 12px;
+        &:not(:last-child) {
+            margin-bottom: 5px;
+        }
+        &:hover,
+        &.selected {
+            background-color: #f2f4ff;
+            color: #7685c8;
+        }
+        &.selected {
+            background-color: #f2f4ff;
+            &:after {
+                font-size: 13px;
+                font-weight: bold;
+                content: "✓";
+                color: #7685c8;
+            }
+        }
+    }
+    .input-item input {
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 5px;
+        border-radius: 3px;
+        &:hover,
+        &.selected {
+            background-color: #f2f4ff;
+            color: #7685c8;
+        }
+    }
+}
